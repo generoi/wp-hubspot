@@ -110,7 +110,7 @@
   /**
    * Initalize.
    */
-  $document.on('ready', WP_Hubspot.init);
+  WP_Hubspot.init();
 
   /**
    * Tailor Canvas support.

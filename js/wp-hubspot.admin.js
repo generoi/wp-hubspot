@@ -34,7 +34,7 @@
 
     switch (options.type) {
       case 'form':
-        if ($('#wp_hubspot_cta_css').is(':checked')) {
+        if ($('#wp_hubspot_form_css').is(':checked')) {
           options.css = '';
         }
         break;

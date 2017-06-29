@@ -1,0 +1,28 @@
+{
+  "name": "generoi/wp-hubspot",
+  "type": "wordpress-plugin",
+  "license": "MIT",
+  "description": "HubSpot integrations for Wordpress",
+  "homepage": "https://github.com/generoi/wp-hubspot",
+  "authors": [
+    {
+      "name": "Oskar Schöldström",
+      "email": "public@oxy.fi"
+    }
+  ],
+  "keywords": [
+    "wordpress"
+  ],
+  "support": {
+    "issues": "https://github.com/generoi/wp-hubspot/issues"
+  },
+  "require": {
+    "php": ">=5.4.0",
+    "composer/installers": "~1.0"
+  },
+  "archive" : {
+    "exclude": [
+      ".gitignore"
+    ]
+  }
+}

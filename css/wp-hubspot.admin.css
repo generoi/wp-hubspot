@@ -1,0 +1,19 @@
+#wp-hubspot-settings-tab-contents {
+   min-height: 100px;
+   margin: 0 0 0 0px;
+   padding: 20px;
+   background-color: #fff;
+   border: 1px solid #ddd;
+}
+
+#wp-hubspot-settings-tab-contents .form-table {
+  clear: none;
+}
+
+#wp-hubspot-popup .form-table {
+  clear: none;
+  width: auto !important;
+}
+.wp_hubspot_type_row.hidden {
+  display: none;
+}

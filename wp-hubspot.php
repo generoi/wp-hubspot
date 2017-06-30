@@ -52,6 +52,7 @@ class WP_Hubspot
         add_action('wp_enqueue_scripts', [$this, 'enqueue_frontend_scripts']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
         add_action('tailor_enqueue_sidebar_scripts', [$this, 'enqueue_admin_scripts']);
+        add_action('tailor_canvas_enqueue_scripts', [$this, 'enqueue_tailor_canvas_scripts']);
     }
 
     /**
@@ -69,6 +70,7 @@ class WP_Hubspot
         wp_localize_script('wp-hubspot/frontend/js', 'WP_Hubspot_Options', [
             'locale' => $this->get_locale(),
         ]);
+        wp_register_script('wp-hubspot/tailor/js', $path . 'js/wp-hubspot.tailor.js', ['wp-hubspot/frontend/js', 'tailor-canvas'], $this->version, true);
     }
 
     /**
@@ -86,6 +88,13 @@ class WP_Hubspot
     public function enqueue_frontend_scripts()
     {
         wp_enqueue_script('wp-hubspot/frontend/js');
+    }
+
+    /**
+     * Tailor integration.
+     */
+    public function enqueue_tailor_canvas_scripts() {
+        wp_enqueue_script('wp-hubspot/tailor/js');
     }
 
     /**

@@ -111,13 +111,4 @@
    * Initalize.
    */
   WP_Hubspot.init();
-
-  /**
-   * Tailor Canvas support.
-   */
-  $document.on('ready', function () {
-    if (window.Tailor && window.app) {
-      window.app.channel.on('element:refresh', WP_Hubspot.init);
-    }
-  });
 }(jQuery));

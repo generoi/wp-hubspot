@@ -1,8 +1,6 @@
 (function ($) {
   var $document = $(document);
 
-  console.log('hubspot.admin');
-
   function buildAttributes(attributes) {
     var output = [];
     $.map(attributes, function (value, key) {

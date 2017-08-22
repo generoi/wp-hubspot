@@ -111,4 +111,6 @@
    * Initalize.
    */
   WP_Hubspot.init();
+  $document.on('popupsExtended:load', WP_Hubspot.init);
+
 }(jQuery));

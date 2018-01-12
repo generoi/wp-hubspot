@@ -3,7 +3,7 @@
 Plugin Name:        WP Hubspot
 Plugin URI:         http://genero.fi
 Description:        Some Hubspot integrations for WP.
-Version:            0.0.1
+Version:            0.0.4
 Author:             Genero
 Author URI:         http://genero.fi/
 
@@ -19,6 +19,11 @@ class WP_Hubspot
 {
     private static $instance = null;
     public $version = '1.0.0';
+    public $plugin_name = 'wp-hubspot';
+    public $github_url = 'https://github.com/generoi/wp-hubspot';
+    protected $hubspot_api_limit = 100;
+    public $forms;
+    public $ctas;
 
     public static function get_instance()
     {
@@ -28,21 +33,21 @@ class WP_Hubspot
         return self::$instance;
     }
 
-    protected $hubspot_api_limit = 100;
-
-    public $forms;
-    public $ctas;
-
-    public function init()
+    public function __construct()
     {
         register_activation_hook(__FILE__, [__CLASS__, 'activate']);
         register_deactivation_hook(__FILE__, [__CLASS__, 'deactivate']);
         register_setting('wp_hubspot', 'wp_hubspot_apikey');
+        Puc_v4_Factory::buildUpdateChecker($this->github_url, __FILE__, $this->plugin_name);
+        add_action('plugins_loaded', [$this, 'init']);
+    }
 
+    public function init()
+    {
         add_shortcode('hubspot', [$this, 'shortcode_output']);
         add_action('admin_menu', [$this, 'admin_menu']);
 
-         add_action('media_buttons', [$this, 'media_buttons']);
+        add_action('media_buttons', [$this, 'media_buttons']);
         add_action('wp_ajax_wp_hubspot_embed', [$this, 'embed_popup_content']);
 
         add_action('wp_enqueue_scripts', [$this, 'register_scripts']);
@@ -320,4 +325,8 @@ class WP_Hubspot
     }
 }
 
-WP_Hubspot::get_instance()->init();
+if (file_exists($composer = __DIR__ . '/vendor/autoload.php')) {
+    require_once $composer;
+}
+
+WP_Hubspot::get_instance();
